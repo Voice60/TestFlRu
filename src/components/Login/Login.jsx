@@ -1,13 +1,11 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserEmail, getUserPassword } from '../../redux/selectors/regSelectors';
+import { useHistory } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import { setAuth } from '../../redux/loginReducer';
 import { getIsAuth } from '../../redux/selectors/loginSelectors';
-import { Redirect, useHistory } from 'react-router';
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import styles from './Login.module.scss'
+import { getUserEmail, getUserPassword } from '../../redux/selectors/regSelectors';
 
 const Login = () => {
 
@@ -19,11 +17,11 @@ const Login = () => {
 
   const [error, setError] = useState(null)
 
-  if (isAuth) { return <Redirect to='/' /> }
+  if (isAuth) { history.push('/') }
 
   return (
-    <div className={styles.form}>
-      <h1>Авторизация</h1>
+    <div className='d-flex flex-column'>
+      <h1 className='mb-4 mt-4 text-center'>Авторизация</h1>
       <Formik
         initialValues={{ email: '', password: '' }}
         validate={values => {
@@ -54,15 +52,15 @@ const Login = () => {
         }}
       >
         <Form>
-          <Field placeholder='email' type="email" name="email" />
-          <ErrorMessage className={styles.errorMessage} name="email" component="div" />
-          <Field placeholder='password' type="password" name="password" />
-          <ErrorMessage className={styles.errorMessage} name="password" component="div" />
-          {error && <div>{error}</div>}
-          <button type="submit">Submit</button>
+          <Field className='form-control mb-3' placeholder='email' type="email" name="email" />
+          <ErrorMessage className='text-danger mb-3 ms-4' name="email" component="div" />
+          <Field className='form-control mb-3' placeholder='password' type="password" name="password" />
+          <ErrorMessage className='text-danger mb-3 ms-4' name="password" component="div" />
+          <button className='btn btn-primary' type="submit">Submit</button>
+          {error && <div className='text-danger mb-3 mt-3 ms-3'>{error}</div>}
         </Form>
       </Formik>
-      <NavLink className={styles.redirectLink} to='/reg'>Регистрация</NavLink>
+      <NavLink className='btn btn-link align-self-start ps-0' to='/reg'>Регистрация</NavLink>
     </div>
   )
 }

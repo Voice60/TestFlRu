@@ -1,6 +1,7 @@
-import { combineReducers, compose, createStore } from "redux";
-import loginReducer from './loginReducer'
-import regReducer from './regReducer'
+import { combineReducers, createStore } from "redux";
+
+import loginReducer from './loginReducer';
+import regReducer from './regReducer';
 
 const reducers = combineReducers({
   login: loginReducer,

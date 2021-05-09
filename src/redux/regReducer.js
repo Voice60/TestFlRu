@@ -20,10 +20,8 @@ export default (state = initialState, { type, payload }) => {
   }
 }
 
-export const setUser = (payload) => {
-  debugger
-  return ({
-    type: SET_USER,
-    payload
-  })
-}
+export const setUser = (payload) => ({
+  type: SET_USER,
+  payload
+})
+

@@ -2,10 +2,9 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router';
+
 import { setUser } from '../../redux/regReducer';
 import { getIsAuth } from '../../redux/selectors/loginSelectors';
-import styles from './Reg.module.scss'
-
 
 const Reg = () => {
 
@@ -14,12 +13,11 @@ const Reg = () => {
   let history = useHistory()
   const isAuth = useSelector(getIsAuth)
 
-
   if (isAuth) { return <Redirect to='/' /> }
 
   return (
-    <div className={styles.form}>
-      <h1>Регистрация</h1>
+    <div className='d-flex flex-column'>
+      <h1 className='mb-4 mt-4 text-center'>Регистрация</h1>
       <Formik
         initialValues={{ email: '', password: '' }}
         validate={values => {
@@ -46,11 +44,11 @@ const Reg = () => {
         }}
       >
         <Form>
-          <Field placeholder='email' type="email" name="email" />
-          <ErrorMessage className={styles.errorMessage} name="email" component="div" />
-          <Field placeholder='password' type="password" name="password" />
-          <ErrorMessage className={styles.errorMessage} name="password" component="div" />
-          <button type="submit">Submit</button>
+          <Field className='form-control mb-3' placeholder='email' type="email" name="email" />
+          <ErrorMessage className='text-danger mb-3 ms-4' name="email" component="div" />
+          <Field className='form-control mb-3' placeholder='password' type="password" name="password" />
+          <ErrorMessage className='text-danger mb-3 ms-4' name="password" component="div" />
+          <button className='btn btn-primary' type="submit">Submit</button>
         </Form>
       </Formik>
     </div>
