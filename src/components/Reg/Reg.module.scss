@@ -1,0 +1,17 @@
+.form {
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      margin-bottom: 10px;
+    }
+
+    .errorMessage {
+      margin-bottom: 15px;
+      color: rgb(245, 41, 62);
+    }
+  }
+
+}
